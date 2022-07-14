@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['mealplannerserver.herokuapp.com']
 
 INSTALLED_APPS = [
     'gunicorn',
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
