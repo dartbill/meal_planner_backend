@@ -3,18 +3,13 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 import json
 
-# create_user(username, email=None, password=None, **extra_fields)¶
-# Create your views here.
-# def create_cat(request):
-#     if request.method == 'POST':
-#         new_cat = json.loads(request.body)
-#         Cat.objects.create(name=new_cat['name'], age=new_cat['age'])
-#     return JsonResponse({'message': 'Cat successfully created'})
 # {
 #     "name": 'name',
 #     'email': 'email',
 #     'password':'password'
 # }
+
+# this function creates a new user, it takes in name, email and password as json
 
 
 def new_user(request):
