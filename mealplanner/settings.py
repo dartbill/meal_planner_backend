@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zqim6dw1lo7d@_kg--*6au%53l=hixa!--4!zf51op8!2!wt3%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://mealplannerserver.herokuapp.com/']
 
 
 # Application definition
