@@ -25,13 +25,15 @@ SECRET_KEY = 'django-insecure-zqim6dw1lo7d@_kg--*6au%53l=hixa!--4!zf51op8!2!wt3%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mealplannerserver.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['mealplannerserver.herokuapp.com',
+                 '127.0.0.1']
 CORS_ORIGIN_ALLOW_ALL = True
 CSRF_TRUSTED_ORIGINS = ['https://hoppscotch.io']
 # Application definition
 
 INSTALLED_APPS = [
     'gunicorn',
+    'psycopg2',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -84,6 +86,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'DATABASE NAME',
+#         'USER': 'USER NAME',
+#         'PASSWORD': 'USER PASSWORD',
+#         'HOST': 'localhost',
+#         'PORT': '3000',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
