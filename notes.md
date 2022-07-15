@@ -46,3 +46,11 @@
     - method: GET
         - accepts: Null
         - returns: `{'message': 'User logged out'}`
+
+
+
+{
+    "prefs":{"calories_limit": 3, "intolorences": ["1","2"], "budget": 2},
+    "diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true},
+    "meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}
+}
