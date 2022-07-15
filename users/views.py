@@ -5,11 +5,8 @@ from django.http import JsonResponse
 from .models import Preferences, Diet, Meals, MealHistory
 import json
 
-# need to get the login in for
 
 # home route
-
-
 def home(request):
     return JsonResponse({'message': 'Welcome to the server'})
 
