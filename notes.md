@@ -51,3 +51,9 @@
     "user_id": "billie",
     "recipes": ['1', '2', '3']
 }
+
+login
+{
+    "username": "billie",
+    "password": "Hello"
+}

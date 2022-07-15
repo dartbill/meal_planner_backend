@@ -87,4 +87,4 @@ def meal_history(request):
         )
         return JsonResponse({'message': 'Meals successfully added'})
     else:
-        JsonResponse({'error': 'User not authenticated'})
+        return JsonResponse({'error': 'User not authenticated'})
