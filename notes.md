@@ -21,3 +21,15 @@
     'budget': int
 }
 `
+
+-json:
+`
+ {
+   'vegan': bool,
+   'vegetarian' : bool,
+   'glutenfree': bool,
+   'ketogenic': bool,
+   'pescetarian': bool,
+   'peleo': bool
+ }
+ `

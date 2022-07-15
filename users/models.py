@@ -32,7 +32,7 @@ class Meals(models.Model):
 class MealHistory(models.Model):
     User_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     breakfast = models.BooleanField()
-    recipes = ArrayField(ArrayField(models.CharField(max_length=512)))
+    recipes = ArrayField(models.CharField(max_length=512), default=list)
 
     def __str__(self):
         return self.preferences_id
@@ -43,7 +43,7 @@ class Preferences(models.Model):
     diet_id = models.ForeignKey(Diet, on_delete=models.SET_NULL, null=True)
     meals_id = models.ForeignKey(Meals, on_delete=models.SET_NULL, null=True)
     calories_limit = models.IntegerField()
-    intolorences = ArrayField(ArrayField(models.CharField(max_length=50)))
+    intolorences = ArrayField(models.CharField(max_length=50), default=list)
     budget = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):

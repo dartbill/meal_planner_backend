@@ -33,16 +33,6 @@ def new_pref(request):
     return JsonResponse({'message': 'Preferences successfully added'})
 
 
-# {
-#   'vegan': bool,
-#   'vegetarian' : bool,
-#   'glutenfree': bool,
-#   'ketogenic': bool,
-#   'pescetarian': bool,
-#   'peleo': bool
-# }
-
-
 def diet(request):
     diet_information = json.loads(request.body)
     print(diet_information)
