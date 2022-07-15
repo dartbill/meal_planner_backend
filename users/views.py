@@ -16,7 +16,6 @@ def home(request):
 
 def user_login(request):
     user_information = json.loads(request.body)
-    print(user_information)
     username = user_information['username']
     password = user_information['password']
     user = authenticate(request, username=username, password=password)
@@ -87,3 +86,5 @@ def meal_history(request):
             user_id=user, recipes=meal_info['recipes']
         )
         return JsonResponse({'message': 'Meals successfully added'})
+    else:
+        JsonResponse({'error': 'User not authenticated'})
