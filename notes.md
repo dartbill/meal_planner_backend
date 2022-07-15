@@ -6,20 +6,12 @@
         - accepts: `{ "name": 'name', 'email': 'email', 'password':'password'}`
         - returns: `{'message': 'user successfully created'}`
 ### Create preferences
-- path: `addpref/`
+- path: `createprefs/`
     - method: POST
-        - accepts: `{"calories_limit": 3, "intolorences": ["1","2"], "budget": 2}`
+        - accepts: `{"prefs":{"calories_limit": 3, "intolorences": ["1","2"], "budget": 2},"diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true},"meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}}`
         - returns: `{'message': 'Preferences successfully added'}`
-### Set diet
-- path: `diet/`
-    - method: POST
-        - accepts"`{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true}`
-        - returns: `{'message': 'Diet successfully added'}`
-### Set meals
-- path: `meals/`
-    - method: POST
-        - accepts:`{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}`
-        - returns: `{'message': 'Meals successfully added'}`
+
+
 
 ### Set meal history
 - path `mealhistory/`
@@ -47,10 +39,3 @@
         - accepts: Null
         - returns: `{'message': 'User logged out'}`
 
-
-
-{
-    "prefs":{"calories_limit": 3, "intolorences": ["1","2"], "budget": 2},
-    "diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true},
-    "meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}
-}
