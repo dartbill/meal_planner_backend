@@ -21,5 +21,5 @@ urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('createuser/', new_user),
-    path('AddPref/', new_pref)
+    path('addpref/', new_pref)
 ]

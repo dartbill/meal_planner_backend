@@ -40,7 +40,7 @@ def new_pref(request):
     print(pref_information)
     Preferences.objects.create(
         user_id=pref_information['user_id'], diet_id=pref_information['diet_id'], meals_id=pref_information['meals_id'],
-        calores_limit=pref_information['calories_limit'], intolorences=pref_information[
+        calories_limit=pref_information['calories_limit'], intolorences=pref_information[
             'intolorences'], budget=pref_information['budget']
     )
     return JsonResponse({'message': 'Preferences successfully added'})
