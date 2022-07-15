@@ -44,20 +44,23 @@ meals/
      'dinner': bool,
      'dessert': bool,
      'snack': bool
-}`
+}
+`
 
 ### Get meal history
 mealhistory/
+`
 {
     "user_id": "billie",
     "recipes": ['1', '2', '3']
 }
-
+`
 ### Login
+`
 {
     "username": "billie",
     "password": "Hello"
 }
-
+`
 ### Logout
 -just a get call to url
