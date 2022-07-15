@@ -56,6 +56,19 @@ def new_pref(request):
     return JsonResponse({'message': 'Preferences successfully added'})
 
 
+def update_pref(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    user = request.user
+
+    if request.method == 'PATCH':
+        updated_pref = json.loads(request.body)
+        Preferences.objects.filter(user_id=user).update(
+            name=updated_pref['name'], age=updated_pref['age'])
+    return JsonResponse({'message': 'Preferences successfully updated'})
+
+
 def diet(request):
     user1 = authenticate(request, username='billie', password='Hello')
     if user1 is not None:
