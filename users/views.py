@@ -65,7 +65,7 @@ def diet(request):
                         vegan=diet_information['vegan'], vegetarian=diet_information[
                             'vegetarian'], gluten_free=diet_information['glutenfree'],
                         ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
-                            'pescetarian'], peleo=diet_information['peleo']
+                            'pescetarian'], paleo=diet_information['peleo']
                         )
     return JsonResponse({'message': 'Diet successfully added'})
 

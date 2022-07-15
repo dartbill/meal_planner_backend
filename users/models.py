@@ -13,7 +13,7 @@ class Diet(models.Model):
     gluten_free = models.BooleanField(default=False)
     ketogenic = models.BooleanField(default=False)
     pescetarian = models.BooleanField(default=False)
-    peleo = models.BooleanField(default=False)
+    paleo = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user_id.username
