@@ -32,6 +32,7 @@ CSRF_TRUSTED_ORIGINS = ['https://hoppscotch.io']
 
 INSTALLED_APPS = [
     'gunicorn',
+    'psycopg2',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',

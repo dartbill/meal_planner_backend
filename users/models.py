@@ -1,29 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
 
 class Diet(models.Model):
     # default value of boolean is None unless setting default attribute
-    vegan = models.BooleanField()
-    vegetarian = models.BooleanField()
-    gluten_free = models.BooleanField()
-    ketogenic = models.BooleanField()
-    pescetarian = models.BooleanField()
-    peleo = models.BooleanField()
+    vegan = models.BooleanField(default=False)
+    vegetarian = models.BooleanField(default=False)
+    gluten_free = models.BooleanField(default=False)
+    ketogenic = models.BooleanField(default=False)
+    pescetarian = models.BooleanField(default=False)
+    peleo = models.BooleanField(default=False)
 
     def __str__(self):
         return self.preferences_id
 
 
 class Meals(models.Model):
-    breakfast = models.BooleanField()
-    lunch = models.BooleanField()
-    dinner = models.BooleanField()
-    dessert = models.BooleanField()
-    snack = models.BooleanField()
+    breakfast = models.BooleanField(default=False)
+    lunch = models.BooleanField(default=False)
+    dinner = models.BooleanField(default=False)
+    dessert = models.BooleanField(default=False)
+    snack = models.BooleanField(default=False)
 
     def __str__(self):
         return self.preferences_id
@@ -45,7 +45,7 @@ class Preferences(models.Model):
     diet_id = models.ForeignKey(Diet, on_delete=models.SET_NULL, null=True)
     meals_id = models.ForeignKey(Meals, on_delete=models.SET_NULL, null=True)
     calories_limit = models.IntegerField()
-    intolorences = models.CharField(max_length=50)
+    intolorences = ArrayField(ArrayField(models.CharField(max_length=50)))
     budget = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):

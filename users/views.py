@@ -1,17 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from .models import Preferences
+from .models import Preferences, Diet, Meals, MealHistory
 import json
 
-# {
-#     "name": 'name',
-#     'email': 'email',
-#     'password':'password'
-# }
-
+# need to get the login in for
 
 # home route
+
+
 def home(request):
     return JsonResponse({'message': 'Welcome to the server'})
 
@@ -25,16 +22,6 @@ def new_user(request):
     return JsonResponse({'message': 'user successfully created'})
 
 
-# def new_pref(request):
-#     pref_information = json.loads(request.body)
-#     print(pref_information)
-#     User.objects.create_pref(
-#         user_id=pref_information['user_id'], diet_id=pref_information['diet_id'], meals_id=pref_information['meals_id'],
-#         calores_limit=pref_information['calories_limit'], intolorences=pref_information[
-#             'intolorences'], budget=pref_information['budget']
-#     )
-#     return JsonResponse({'message': 'Preferences successfully added'})
-
 def new_pref(request):
     pref_information = json.loads(request.body)
     print(pref_information)
@@ -44,3 +31,24 @@ def new_pref(request):
             'intolorences'], budget=pref_information['budget']
     )
     return JsonResponse({'message': 'Preferences successfully added'})
+
+
+# {
+#   'vegan': bool,
+#   'vegetarian' : bool,
+#   'glutenfree': bool,
+#   'ketogenic': bool,
+#   'pescetarian': bool,
+#   'peleo': bool
+# }
+
+
+def diet(request):
+    diet_information = json.loads(request.body)
+    print(diet_information)
+    Diet.objects.create(
+        vegan=diet_information['vegan'], vegetarian=diet_information['vegetarian'], gluten_free=diet_information['glutenfree'],
+        ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
+            'pescetarian'], peleo=diet_information['peleo']
+    )
+    return JsonResponse({'message': 'Diet successfully added'})
