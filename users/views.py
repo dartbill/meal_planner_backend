@@ -14,7 +14,7 @@ def home(request):
     return JsonResponse({'message': 'Welcome to the server'})
 
 
-def login(request):
+def user_login(request):
     user_information = json.loads(request.body)
     print(user_information)
     username = user_information['username']
@@ -22,6 +22,7 @@ def login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
+        return JsonResponse({'message': 'login successful'})
 
     else:
         return JsonResponse({'error': 'login unsuccessful'})
