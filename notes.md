@@ -18,7 +18,7 @@
 ### Set meals
 - path: `meals/`
     - method: POST
-        - accepts:`{'breakfast': bool,'lunch': bool,'dinner': bool,'dessert': bool,'snack': bools}`
+        - accepts:`{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}`
         - returns: `{'message': 'Meals successfully added'}`
 
 ### Set meal history
