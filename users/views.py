@@ -43,17 +43,26 @@ def new_user(request):
     return JsonResponse({'message': 'user successfully created'})
 
 
-# def update_pref(request):
-#     user1 = authenticate(request, username='billie', password='Hello')
-#     if user1 is not None:
-#         login(request, user1)
-#     user = request.user
+def update_pref(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    user = request.user
 
-#     if request.method == 'PATCH':
-#         updated_pref = json.loads(request.body)
-#         Preferences.objects.filter(user_id=user).update(
-#             name=updated_pref['name'], age=updated_pref['age'])
-#     return JsonResponse({'message': 'Preferences successfully updated'})
+    if request.method == 'PATCH':
+        information = json.loads(request.body)
+        pref_information = information['prefs']
+        meal_info = information['meals']
+        diet_information = information['diet']
+
+        Preferences.objects.filter(user_id=user).update(calories_limit=pref_information['calories_limit'], intolorences=pref_information[
+            'intolorences'], budget=pref_information['budget'])
+        Meals.objects.filter(user_id=user).update(breakfast=meal_info['breakfast'], lunch=meal_info['lunch'], dinner=meal_info['dinner'],
+                                                  dessert=meal_info['dessert'], snack=meal_info['snack'])
+        Diet.objects.filter(user_id=user).update(user_id=user, vegan=diet_information['vegan'], vegetarian=diet_information['vegetarian'], gluten_free=diet_information['glutenfree'], ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
+            'pescetarian'], paleo=diet_information['paleo'])
+
+    return JsonResponse({'message': 'Preferences successfully updated'})
 
 
 def meal_history(request):
