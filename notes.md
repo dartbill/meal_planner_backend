@@ -11,7 +11,7 @@
 }`
 
 ### Create preferences
-- path `addpref/`
+- path: `addpref/`
 - json: 
 `
 {
@@ -21,7 +21,7 @@
 }
 `
 ### Set diet
-- path `diet/`
+- path: `diet/`
 - json:
 `
  {
@@ -35,7 +35,7 @@
  `
 
 ### Get meals
-- path `meals/`
+- path: `meals/`
 - json:
 `
  {
@@ -57,7 +57,7 @@
 }
 `
 ### Login
-- path `login/`
+- path: `login/`
 - json:
 `
 {
@@ -66,5 +66,5 @@
 }
 `
 ### Logout
-- path `logout/`
--just a get call to url
+- path: `logout/`
+- just a get call to url
