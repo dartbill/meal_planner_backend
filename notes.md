@@ -15,13 +15,13 @@
     - method: POST
         - accepts"`{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true}`
         - returns: `{'message': 'Diet successfully added'}`
-### Get meals
+### Set meals
 - path: `meals/`
     - method: POST
         - accepts:`{'breakfast': bool,'lunch': bool,'dinner': bool,'dessert': bool,'snack': bools}`
         - returns: `{'message': 'Meals successfully added'}`
 
-### Get meal history
+### Set meal history
 - path `mealhistory/`
     - method: POST
         - accepts:`{"recipes": ['1', '2', '3']}`
@@ -38,9 +38,9 @@
     ] -->
 ### Login
 - path: `login/`
-        - method: POST
-            - accepts: `{"username": "billie","password": "Hello"}`
-            - returns: `{'message': 'login successful'}`
+    - method: POST
+        - accepts: `{"username": "billie","password": "Hello"}`
+        - returns: `{'message': 'login successful'}`
 ### Logout
 - path: `logout/`
     - method: GET

@@ -60,13 +60,14 @@ def diet(request):
         login(request, user1)
     user = request.user
     diet_information = json.loads(request.body)
-    print(diet_information)
-    Diet.objects.create(user_id=user,
-                        vegan=diet_information['vegan'], vegetarian=diet_information[
-                            'vegetarian'], gluten_free=diet_information['glutenfree'],
-                        ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
-                            'pescetarian'], paleo=diet_information['peleo']
-                        )
+    diet = Diet.objects.create(user_id=user,
+                               vegan=diet_information['vegan'], vegetarian=diet_information[
+                                   'vegetarian'], gluten_free=diet_information['glutenfree'],
+                               ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
+                                   'pescetarian'], paleo=diet_information['peleo']
+                               )
+    Preferences.objects.filter(user_id=user).update(
+        diet_id=diet)
     return JsonResponse({'message': 'Diet successfully added'})
 
 
@@ -76,11 +77,12 @@ def meals(request):
         login(request, user1)
     user = request.user
     meal_info = json.loads(request.body)
-    Meals.objects.create(user_id=user,
-                         breakfast=meal_info['breakfast'], lunch=meal_info['lunch'], dinner=meal_info['dinner'],
-                         dessert=meal_info['dessert'], snack=meal_info[
-                             'snack']
-                         )
+    meals = Meals.objects.create(user_id=user,
+                                 breakfast=meal_info['breakfast'], lunch=meal_info['lunch'], dinner=meal_info['dinner'],
+                                 dessert=meal_info['dessert'], snack=meal_info[
+                                     'snack']
+                                 )
+    Preferences.objects.filter(user_id=user).update(meals_id=meals)
     return JsonResponse({'message': 'Meals successfully added'})
 
 
