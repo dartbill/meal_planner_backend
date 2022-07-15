@@ -1,6 +1,6 @@
 # Path 
 
-### create a new user
+### Create a new user
 - path: createuser/
 - json:
 `
@@ -10,18 +10,9 @@
     'password':'password'
 }`
 
+### Create preferences
 - path addpref/
 - json: 
-`
-{
-    'user_id': 'name',
-    'diet_id': 'diet id',
-    'meals_id': 'meals id',
-    'calories_limit': int,
-    'intolorences': [],
-    'budget': int
-}
-`
 `
 {
     "calories_limit": 3,
@@ -29,7 +20,7 @@
     "budget": 2
 }
 `
-# diet
+### Set diet
 - path diet/
 - json:
 `
@@ -43,7 +34,7 @@
  }
  `
 
-# meals
+### Get meals
 meals/
 - json:
 `
@@ -55,15 +46,18 @@ meals/
      'snack': bool
 }`
 
-# meal history
+### Get meal history
 mealhistory/
 {
     "user_id": "billie",
     "recipes": ['1', '2', '3']
 }
 
-# login
+### Login
 {
     "username": "billie",
     "password": "Hello"
 }
+
+### Logout
+-just a get call to url
