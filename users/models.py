@@ -50,7 +50,7 @@ class Preferences(models.Model):
     calories_limit = models.IntegerField()
     intolorences = JSONField(models.CharField(
         max_length=50))  # make this an array
-    budget = models.DecimalField(max_digits=6, decimal_places=2)
+    budget = models.IntegerField()
 
     def __str__(self):
         return self.user_id.username

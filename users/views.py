@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.http import JsonResponse, HttpResponse
 from .models import Preferences, Diet, Meals, MealHistory
 import json
@@ -165,6 +166,23 @@ def get_meal_history(request):
     if request.user.is_authenticated:
         user = request.user
         qs = MealHistory.objects.filter(user_id=user).values('recipes', 'date')
+        print(qs)
+        # qs_json = serializers.serialize('json', qs)
+        # print(qs_json)
+        return HttpResponse(qs,  content_type='application/json')
+    else:
+        return JsonResponse({'error': 'User not authenticated'})
+
+
+def get_preferences(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    if request.user.is_authenticated:
+
+        user = request.user
+        qs = Preferences.objects.filter(user_id=user).values(
+            'calories_limit', 'intolorences', 'budget')
         print(qs)
         # qs_json = serializers.serialize('json', qs)
         # print(qs_json)

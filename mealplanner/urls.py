@@ -17,7 +17,7 @@ from pdb import post_mortem
 from webbrowser import get
 from django.contrib import admin
 from django.urls import path
-from users.views import home, new_user, meal_history, user_login, user_logout, create_prefs, update_pref, get_meal_history
+from users.views import home, new_user, meal_history, user_login, user_logout, create_prefs, update_pref, get_meal_history, get_preferences
 
 urlpatterns = [
     path('', home),
@@ -28,5 +28,6 @@ urlpatterns = [
     path('createprefs/', create_prefs),
     path('updateprefs/', update_pref),
     path('logout/', user_logout),
-    path('gethistory/', get_meal_history)
+    path('gethistory/', get_meal_history),
+    path('getprefs/', get_preferences)
 ]
