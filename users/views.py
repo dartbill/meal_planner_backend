@@ -66,7 +66,7 @@ def diet(request):
                                vegan=diet_information['vegan'], vegetarian=diet_information[
                                    'vegetarian'], gluten_free=diet_information['glutenfree'],
                                ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
-                                   'pescetarian'], paleo=diet_information['peleo']
+                                   'pescetarian'], paleo=diet_information['paleo']
                                )
     Preferences.objects.filter(user_id=user).update(
         diet_id=diet)
