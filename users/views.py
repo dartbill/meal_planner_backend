@@ -14,8 +14,9 @@ def home(request):
     return JsonResponse({'message': 'Welcome to the server'})
 
 
-def my_view(request):
+def login(request):
     user_information = json.loads(request.body)
+    print(user_information)
     username = user_information['username']
     password = user_information['password']
     user = authenticate(request, username=username, password=password)
