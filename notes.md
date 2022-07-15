@@ -3,7 +3,7 @@
 ### Login
 - path: `login/`
     - method: POST
-        - accepts: `{"username": "billie","password": "Hello"}`
+        - accepts: `{"email": "billie@gmail.com","password": "Hello"}`
         - returns: `{'message': 'login successful'}`
 ### Logout
 - path: `logout/`
@@ -22,7 +22,7 @@
         - accepts: `{"prefs":{"calories_limit": 3, "intolorences": ["1","2"], "budget": 2},"diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true},"meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}}`
         - returns: `{'message': 'Preferences successfully added'}`
 - path `updateprefs/`
-    - method: POST 
+    - method: PATCH 
         - accepts: `{"prefs":{"calories_limit": 3, "intolorences": ["1","2"], "budget": 2},"diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true},"meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}}`
         - returns: `{'message': 'Preferences successfully updated'}`
 
@@ -44,3 +44,12 @@
     }
   }
 `
+
+
+{"recipes": {
+        "breakfast": [{"id":"", "title": "", "fave":""}], 
+        "lunch": [{"id":"", "title": "", "fave":""}], 
+        "dinner": [{"id":"", "title": "", "fave":""}], 
+        "dessert": [{"id":"", "title": "", "fave":""}], 
+        "snacks": [{"id":"", "title": "fgdfgfd", "fave":""}]}
+}

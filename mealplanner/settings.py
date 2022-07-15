@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'gunicorn',
     'psycopg2',
     'corsheaders',
+    'jsonfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -89,11 +90,11 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'DATABASE NAME',
-#         'USER': 'USER NAME',
-#         'PASSWORD': 'USER PASSWORD',
+#         'NAME': 'mydb',
+#         'USER': 'myuser',
+#         'PASSWORD': 'mypass',
 #         'HOST': 'localhost',
-#         'PORT': '3000',
+#         'PORT': '5432',
 #     }
 # }
 

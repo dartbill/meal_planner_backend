@@ -16,10 +16,10 @@ def home(request):
 def user_login(request):
     # gets response from FE
     user_information = json.loads(request.body)
-    username = user_information['username']
+    email = user_information['email']
     password = user_information['password']
     # authenticate user
-    user = authenticate(request, username=username, password=password)
+    user = authenticate(request, email=email, password=password)
     # check user exists
     if user is not None:
         login(request, user)
@@ -159,6 +159,13 @@ def meal_history(request):
 
 
 def get_meal_history(request):
-    qs = MealHistory.objects.all()
-    qs_json = serializers.serialize('json', qs)
-    return HttpResponse(qs_json,  content_type='application/json')
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    if request.user.is_authenticated:
+        user = request.user
+        qs = MealHistory.objects.filter(user_id=user).values('recipes', 'date')
+        print(qs)
+        # qs_json = serializers.serialize('json', qs)
+        # print(qs_json)
+        return HttpResponse(qs,  content_type='application/json')

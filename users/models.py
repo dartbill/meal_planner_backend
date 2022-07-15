@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+from jsonfield import JSONField
 
 # Create your models here.
 
@@ -34,7 +35,7 @@ class Meals(models.Model):
 class MealHistory(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     date = models.DateTimeField(auto_now=True)
-    recipes = models.CharField(max_length=512)
+    recipes = JSONField(models.CharField(max_length=512))
 
     def __str__(self):
         return self.user_id.username
