@@ -94,6 +94,6 @@ def meal_history(request):
         MealHistory.objects.create(
             user_id=user, recipes=meal_info['recipes']
         )
-        return JsonResponse({'message': 'Meals successfully added'})
+        return JsonResponse({'message': 'Meal history successfully added'})
     else:
         return JsonResponse({'error': 'User not authenticated'})
