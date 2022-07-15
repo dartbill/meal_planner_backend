@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -13,7 +14,19 @@ def home(request):
     return JsonResponse({'message': 'Welcome to the server'})
 
 
-# this function creates a new user, it takes in name, email and password as json
+def my_view(request):
+    user_information = json.loads(request.body)
+    username = user_information['username']
+    password = user_information['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+
+    else:
+        return JsonResponse({'error': 'login unsuccessful'})
+        # this function creates a new user, it takes in name, email and password as json
+
+
 def new_user(request):
     user_information = json.loads(request.body)
     print(user_information)
@@ -55,15 +68,20 @@ def meals(request):
     return JsonResponse({'message': 'Meals successfully added'})
 
 
-{
-    'user_id': 'name '
-}
-
+# def meal_history(request):
+#     meal_info = json.loads(request.body)
+#     # user = request.user
+#     print(meal_info)
+#     MealHistory.objects.create(
+#         user_id=meal_info['user_id'], recipes=meal_info['recipes']
+#     )
+#     return JsonResponse({'message': 'Meals successfully added'})
 
 def meal_history(request):
-    meal_info = json.loads(request.body)
-    print(meal_info)
-    MealHistory.objects.create(
-        user_id=meal_info['user_id'], recipes=meal_info['recipes']
-    )
-    return JsonResponse({'message': 'Meals successfully added'})
+    if request.user.is_authenticated:
+        meal_info = json.loads(request.body)
+        user = request.user
+        MealHistory.objects.create(
+            user_id=user, recipes=meal_info['recipes']
+        )
+        return JsonResponse({'message': 'Meals successfully added'})

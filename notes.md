@@ -44,3 +44,10 @@
      'dessert': bool,
      'snack': bool
 }`
+
+
+
+{
+    "user_id": "billie",
+    "recipes": ['1', '2', '3']
+}
