@@ -31,14 +31,16 @@
     - method: POST
         - accepts:`{"recipes": ['1', '2', '3']}`
         - returns: `{'message': 'Meal history successfully added'}`
-
-
-<!-- to get back from meal history
-     [   {date: "date", recipes: {
-        breakfast: [{id:"", title: "", fave:""}], 
-        lunch: [{id:"", title: "", fave:""}], 
-        dinner: [{id:"", title: "", fave:""}], 
-        dessert: [{id:"", title: "", fave:""}], 
-        snacks: [{id:"", title: "fgdfgfd", fave:""}]}}, dateObj2, dateObj3
-    ] -->
-
+- path `gethistory/`
+    - method GET
+        - accepts: Null
+        - returns: `  {
+    "model": "users.mealhistory",
+    "pk": 1,
+    "fields": {
+      "user_id": 1,
+      "date": "2022-07-15T14:35:03.324Z",
+      "recipes": "{'breakfast': [{'id': '', 'title': '', 'fave': ''}], 'lunch': [{'id': '', 'title': '', 'fave': ''}], 'dinner': [{'id': '', 'title': '', 'fave': ''}], 'dessert': [{'id': '', 'title': '', 'fave': ''}], 'snacks': [{'id': '', 'title': 'fgdfgfd', 'fave': ''}]}"
+    }
+  }
+`
