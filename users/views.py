@@ -37,10 +37,14 @@ def new_user(request):
 
 
 def new_pref(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    user = request.user
     pref_information = json.loads(request.body)
     print(pref_information)
     Preferences.objects.create(
-        user_id=pref_information['user_id'], diet_id=pref_information['diet_id'], meals_id=pref_information['meals_id'],
+        user_id=user, diet_id=pref_information['diet_id'], meals_id=pref_information['meals_id'],
         calories_limit=pref_information['calories_limit'], intolorences=pref_information[
             'intolorences'], budget=pref_information['budget']
     )
@@ -48,35 +52,38 @@ def new_pref(request):
 
 
 def diet(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    user = request.user
     diet_information = json.loads(request.body)
     print(diet_information)
-    Diet.objects.create(
-        vegan=diet_information['vegan'], vegetarian=diet_information['vegetarian'], gluten_free=diet_information['glutenfree'],
-        ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
-            'pescetarian'], peleo=diet_information['peleo']
-    )
+    Diet.objects.create(user_id=user,
+                        vegan=diet_information['vegan'], vegetarian=diet_information[
+                            'vegetarian'], gluten_free=diet_information['glutenfree'],
+                        ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
+                            'pescetarian'], peleo=diet_information['peleo']
+                        )
     return JsonResponse({'message': 'Diet successfully added'})
 
 
 def meals(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    user = request.user
     meal_info = json.loads(request.body)
-    print(meal_info)
-    Meals.objects.create(
-        breakfast=meal_info['breakfast'], lunch=meal_info['lunch'], dinner=meal_info['dinner'],
-        dessert=meal_info['dessert'], snack=meal_info[
-            'snack']
-    )
+    Meals.objects.create(user_id=user,
+                         breakfast=meal_info['breakfast'], lunch=meal_info['lunch'], dinner=meal_info['dinner'],
+                         dessert=meal_info['dessert'], snack=meal_info[
+                             'snack']
+                         )
     return JsonResponse({'message': 'Meals successfully added'})
 
+# {
+#     "recipes":[]
+# }
 
-# def meal_history(request):
-#     meal_info = json.loads(request.body)
-#     # user = request.user
-#     print(meal_info)
-#     MealHistory.objects.create(
-#         user_id=meal_info['user_id'], recipes=meal_info['recipes']
-#     )
-#     return JsonResponse({'message': 'Meals successfully added'})
 
 def meal_history(request):
     user1 = authenticate(request, username='billie', password='Hello')
