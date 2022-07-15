@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import JsonResponse
@@ -26,6 +26,14 @@ def user_login(request):
     else:
         return JsonResponse({'error': 'login unsuccessful'})
         # this function creates a new user, it takes in name, email and password as json
+
+
+def user_logout(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    logout(request)
+    return JsonResponse({'message': 'User logged out'})
 
 
 def new_user(request):
