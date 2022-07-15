@@ -79,6 +79,7 @@ def meals(request):
 #     return JsonResponse({'message': 'Meals successfully added'})
 
 def meal_history(request):
+    user = authenticate(request, username='billie', password='Hello')
     if request.user.is_authenticated:
         meal_info = json.loads(request.body)
         user = request.user

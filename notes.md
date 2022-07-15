@@ -1,5 +1,6 @@
 # Path 
 
+### create a new user
 - path: createuser/
 - json:
 `
