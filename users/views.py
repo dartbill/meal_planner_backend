@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
-from django.core import serializers
 from .models import Preferences, Diet, Meals, MealHistory
 import json
 

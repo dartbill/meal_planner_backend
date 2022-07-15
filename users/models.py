@@ -48,7 +48,8 @@ class Preferences(models.Model):
     meals_id = models.ForeignKey(
         Meals, on_delete=models.SET_NULL, blank=True, null=True)
     calories_limit = models.IntegerField()
-    intolorences = models.CharField(max_length=50)  # make this an array
+    intolorences = JSONField(models.CharField(
+        max_length=50))  # make this an array
     budget = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
