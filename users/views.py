@@ -44,7 +44,7 @@ def new_pref(request):
     pref_information = json.loads(request.body)
     print(pref_information)
     Preferences.objects.create(
-        user_id=user, diet_id=pref_information['diet_id'], meals_id=pref_information['meals_id'],
+        user_id=user,
         calories_limit=pref_information['calories_limit'], intolorences=pref_information[
             'intolorences'], budget=pref_information['budget']
     )

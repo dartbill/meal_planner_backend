@@ -22,20 +22,29 @@
     'budget': int
 }
 `
-
--json:
+`
+{
+    "calories_limit": 3,
+    "intolorences": ["1","2"],
+    "budget": 2
+}
+`
+# diet
+- path diet/
+- json:
 `
  {
-   'vegan': bool,
-   'vegetarian' : bool,
-   'glutenfree': bool,
-   'ketogenic': bool,
-   'pescetarian': bool,
-   'peleo': bool
+   "vegan": true,
+   "vegetarian" : true,
+   "glutenfree": true,
+   "ketogenic": true,
+   "pescetarian": true,
+   "peleo": true
  }
  `
 
-
+# meals
+meals/
 - json:
 `
  {
@@ -46,14 +55,14 @@
      'snack': bool
 }`
 
-
-
+# meal history
+mealhistory/
 {
     "user_id": "billie",
     "recipes": ['1', '2', '3']
 }
 
-login
+# login
 {
     "username": "billie",
     "password": "Hello"
