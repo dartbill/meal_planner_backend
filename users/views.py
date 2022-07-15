@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from .models import Preferences, Diet, Meals, MealHistory
 import json
@@ -97,9 +97,8 @@ def create_prefs(request):
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
+
 # update preferences
-
-
 def update_pref(request):
     # to be deleted when we can log in
     user1 = authenticate(request, username='billie', password='Hello')
@@ -137,6 +136,7 @@ def update_pref(request):
         return JsonResponse({'error': 'User not authenticated'})
 
 
+# set meal history
 def meal_history(request):
     # to be deleted when we can log in
     user1 = authenticate(request, username='billie', password='Hello')
@@ -156,3 +156,9 @@ def meal_history(request):
         return JsonResponse({'message': 'Meal history successfully added'})
     else:
         return JsonResponse({'error': 'User not authenticated'})
+
+
+def get_meal_history(request):
+    qs = MealHistory.objects.all()
+    qs_json = serializers.serialize('json', qs)
+    return HttpResponse(qs_json,  content_type='application/json')
