@@ -1,7 +1,7 @@
 # Path 
 
 ### Create a new user
-- path: createuser/
+- path: `createuser/`
 - json:
 `
 {
@@ -11,7 +11,7 @@
 }`
 
 ### Create preferences
-- path addpref/
+- path `addpref/`
 - json: 
 `
 {
@@ -21,7 +21,7 @@
 }
 `
 ### Set diet
-- path diet/
+- path `diet/`
 - json:
 `
  {
@@ -35,7 +35,7 @@
  `
 
 ### Get meals
-meals/
+- path `meals/`
 - json:
 `
  {
@@ -48,7 +48,8 @@ meals/
 `
 
 ### Get meal history
-mealhistory/
+- path `mealhistory/`
+- json:
 `
 {
     "user_id": "billie",
@@ -56,6 +57,8 @@ mealhistory/
 }
 `
 ### Login
+- path `login/`
+- json:
 `
 {
     "username": "billie",
@@ -63,4 +66,5 @@ mealhistory/
 }
 `
 ### Logout
+- path `logout/`
 -just a get call to url
