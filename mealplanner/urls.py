@@ -17,12 +17,14 @@ from pdb import post_mortem
 from webbrowser import get
 from django.contrib import admin
 from django.urls import path
-from users.views import new_user, new_pref, diet, home
+from users.views import home, new_user, new_pref, diet, meals, meal_history
 
 urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('createuser/', new_user),
     path('addpref/', new_pref),
-    path('diet/', diet)
+    path('diet/', diet),
+    path('meals/', meals),
+    path('mealhistory/', meal_history)
 ]
