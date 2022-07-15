@@ -18,8 +18,9 @@ def user_login(request):
     user_information = json.loads(request.body)
     email = user_information['email']
     password = user_information['password']
+    username = User.objects.get(email=email.lower()).username
     # authenticate user
-    user = authenticate(request, email=email, password=password)
+    user = authenticate(request, username=username, password=password)
     # check user exists
     if user is not None:
         login(request, user)
@@ -169,3 +170,5 @@ def get_meal_history(request):
         # qs_json = serializers.serialize('json', qs)
         # print(qs_json)
         return HttpResponse(qs,  content_type='application/json')
+    else:
+        return JsonResponse({'error': 'User not authenticated'})
