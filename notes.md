@@ -21,7 +21,3 @@
     'budget': int
 }
 `
-
-        user_id=pref_information['user_id'], diet_id=pref_information['diet_id'], meals_id=pref_information['meals_id'],
-        calores_limit=pref_information['calories_limit'], intolorences=pref_information[
-            'intolorences'], budget=pref_information['budget']
