@@ -38,7 +38,6 @@ def user_logout(request):
 
 def new_user(request):
     user_information = json.loads(request.body)
-    print(user_information)
     User.objects.create_user(
         username=user_information['name'], email=user_information['email'], password=user_information['password'])
     return JsonResponse({'message': 'user successfully created'})
@@ -50,7 +49,6 @@ def new_pref(request):
         login(request, user1)
     user = request.user
     pref_information = json.loads(request.body)
-    print(pref_information)
     Preferences.objects.create(
         user_id=user,
         calories_limit=pref_information['calories_limit'], intolorences=pref_information[
@@ -87,10 +85,6 @@ def meals(request):
                              'snack']
                          )
     return JsonResponse({'message': 'Meals successfully added'})
-
-# {
-#     "recipes":[]
-# }
 
 
 def meal_history(request):
