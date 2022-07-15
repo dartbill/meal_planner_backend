@@ -1,5 +1,16 @@
 # Paths 
 
+### Login
+- path: `login/`
+    - method: POST
+        - accepts: `{"username": "billie","password": "Hello"}`
+        - returns: `{'message': 'login successful'}`
+### Logout
+- path: `logout/`
+    - method: GET
+        - accepts: Null
+        - returns: `{'message': 'User logged out'}`
+
 ### Create a new user
 - path: `createuser/`
     - method: POST
@@ -30,14 +41,4 @@
         dessert: [{id:"", title: "", fave:""}], 
         snacks: [{id:"", title: "fgdfgfd", fave:""}]}}, dateObj2, dateObj3
     ] -->
-### Login
-- path: `login/`
-    - method: POST
-        - accepts: `{"username": "billie","password": "Hello"}`
-        - returns: `{'message': 'login successful'}`
-### Logout
-- path: `logout/`
-    - method: GET
-        - accepts: Null
-        - returns: `{'message': 'User logged out'}`
 
