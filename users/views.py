@@ -10,6 +10,8 @@ import json
 def home(request):
     return JsonResponse({'message': 'Welcome to the server'})
 
+# login route
+
 
 def user_login(request):
     user_information = json.loads(request.body)
