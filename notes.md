@@ -33,3 +33,14 @@
    'peleo': bool
  }
  `
+
+
+- json:
+`
+ {
+     'breakfast': bool,
+     'lunch': bool,
+     'dinner': bool,
+     'dessert': bool,
+     'snack': bool
+}`

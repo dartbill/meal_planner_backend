@@ -42,3 +42,28 @@ def diet(request):
             'pescetarian'], peleo=diet_information['peleo']
     )
     return JsonResponse({'message': 'Diet successfully added'})
+
+
+def meals(request):
+    meal_info = json.loads(request.body)
+    print(meal_info)
+    Meals.objects.create(
+        breakfast=meal_info['breakfast'], lunch=meal_info['lunch'], dinner=meal_info['dinner'],
+        dessert=meal_info['dessert'], snack=meal_info[
+            'snack']
+    )
+    return JsonResponse({'message': 'Meals successfully added'})
+
+
+{
+    'user_id': 'name '
+}
+
+
+def meal_history(request):
+    meal_info = json.loads(request.body)
+    print(meal_info)
+    MealHistory.objects.create(
+        user_id=meal_info['user_id'], recipes=meal_info['recipes']
+    )
+    return JsonResponse({'message': 'Meals successfully added'})
