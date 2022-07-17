@@ -41,5 +41,9 @@
         - accepts: Null
         - returns: `{'recipes': {'breakfast': [{'id': '', 'title': '', 'fave': ''}], 'lunch': [{'id': '', 'title': '', 'fave': ''}], 'dinner': [{'id': '', 'title': '', 'fave': ''}], 'dessert': [{'id': '', 'title': '', 'fave': ''}], 'snacks': [{'id': '', 'title': 'fgdfgfd', 'fave': ''}]}, 'date': datetime.datetime(2022, 7, 15, 16, 43, 29, 504997, tzinfo=datetime.timezone.utc)}`
 
-
+### Email
+- path `email/`
+    - method: POST
+        - accepts: `{"message":"hi this is from the web!"}`
+        - returns: `{'message': 'email sent successfully'}`
 
