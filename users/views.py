@@ -3,6 +3,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.core import serializers
 from django.http import JsonResponse, HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import Preferences, Diet, Meals, MealHistory
 import json
 
@@ -189,3 +191,20 @@ def get_preferences(request):
         return HttpResponse(qs,  content_type='application/json')
     else:
         return JsonResponse({'error': 'User not authenticated'})
+
+
+def send_email(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    if request.user.is_authenticated:
+        user = request.user
+        email_info = json.loads(request.body)
+        send_mail(
+            subject='From Django',
+            message=email_info['message'],
+            from_email=settings.EMAIL_HOST_USER,
+            recipient_list=['billieldartnell@hotmail.com'],
+            fail_silently=False,
+        )
+        return JsonResponse({'message': 'email sent successfully'})
