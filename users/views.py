@@ -204,7 +204,7 @@ def send_email(request):
             subject='From Django',
             message=email_info['message'],
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=['billieldartnell@hotmail.com'],
+            recipient_list=[user.email],
             fail_silently=False,
         )
         return JsonResponse({'message': 'email sent successfully'})
