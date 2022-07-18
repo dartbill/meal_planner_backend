@@ -13,15 +13,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import environ
 from pathlib import Path
 import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# DATABASES['default'].update(db_from_env)
 
 env = environ.Env()
 environ.Env.read_env()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -90,18 +92,30 @@ WSGI_APPLICATION = 'mealplanner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # DATABASES = {
 #     # "default": env.dj_db_url("DATABASE_URL")
 #     'default':  dj_database_url.config()
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': [database from heroku postgres]
+#         'USER': [user from heroku postgres]
+#         'PASSWORD': [password from heroku postgres]
+#         'HOST': [host from heroku postgres]
+#         'PORT':  [Port from heroku postgres]
+#     }
+# }
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=600, ssl_require=True)
 
 # DATABASES = {
 #     'default': {
