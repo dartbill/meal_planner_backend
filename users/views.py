@@ -101,7 +101,7 @@ def create_prefs(request):
         return JsonResponse({'error': 'User not authenticated'})
 
 
-# update preferences
+# update and get preferences
 def update_pref(request):
     # to be deleted when we can log in
     user1 = authenticate(request, username='billie', password='Hello')
@@ -134,12 +134,19 @@ def update_pref(request):
             Diet.objects.filter(user_id=user).update(user_id=user, vegan=diet_information['vegan'], vegetarian=diet_information['vegetarian'], gluten_free=diet_information['glutenfree'], ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
                 'pescetarian'], paleo=diet_information['paleo'])
 
-        return JsonResponse({'message': 'Preferences successfully updated'})
+            return JsonResponse({'message': 'Preferences successfully updated'})
+        elif request.method == "GET":
+            qs = Preferences.objects.filter(user_id=user).values(
+                'calories_limit', 'intolorences', 'budget')
+            print(qs)
+            # qs_json = serializers.serialize('json', qs)
+            # print(qs_json)
+            return HttpResponse(qs,  content_type='application/json')
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
 
-# set meal history
+# set and get meal history
 def meal_history(request):
     # to be deleted when we can log in
     user1 = authenticate(request, username='billie', password='Hello')
@@ -149,50 +156,28 @@ def meal_history(request):
     # check if user is logged in
     if request.user.is_authenticated:
         # get information from FE
-        meal_info = json.loads(request.body)
-        # get user information
-        user = request.user
-        # create meal history object
-        MealHistory.objects.create(
-            user_id=user, recipes=meal_info['recipes']
-        )
-        return JsonResponse({'message': 'Meal history successfully added'})
+        if request.method == 'POST':
+            meal_info = json.loads(request.body)
+            # get user information
+            user = request.user
+            # create meal history object
+            MealHistory.objects.create(
+                user_id=user, recipes=meal_info['recipes']
+            )
+            return JsonResponse({'message': 'Meal history successfully added'})
+        elif request.method == 'GET':
+            user = request.user
+            qs = MealHistory.objects.filter(
+                user_id=user).values('recipes', 'date')
+            print(qs)
+            # qs_json = serializers.serialize('json', qs)
+            # print(qs_json)
+            return HttpResponse(qs,  content_type='application/json')
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
 
-def get_meal_history(request):
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
-    if request.user.is_authenticated:
-        user = request.user
-        qs = MealHistory.objects.filter(user_id=user).values('recipes', 'date')
-        print(qs)
-        # qs_json = serializers.serialize('json', qs)
-        # print(qs_json)
-        return HttpResponse(qs,  content_type='application/json')
-    else:
-        return JsonResponse({'error': 'User not authenticated'})
-
-
-def get_preferences(request):
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
-    if request.user.is_authenticated:
-
-        user = request.user
-        qs = Preferences.objects.filter(user_id=user).values(
-            'calories_limit', 'intolorences', 'budget')
-        print(qs)
-        # qs_json = serializers.serialize('json', qs)
-        # print(qs_json)
-        return HttpResponse(qs,  content_type='application/json')
-    else:
-        return JsonResponse({'error': 'User not authenticated'})
-
-
+# send email to user
 def send_email(request):
     user1 = authenticate(request, username='billie', password='Hello')
     if user1 is not None:
@@ -204,7 +189,7 @@ def send_email(request):
             subject='From Django',
             message=email_info['message'],
             from_email=settings.EMAIL_HOST_USER,
-            recipient_list=['billieldartnell@hotmail.com'],
+            recipient_list=[user.email],
             fail_silently=False,
         )
         return JsonResponse({'message': 'email sent successfully'})
