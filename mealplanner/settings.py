@@ -114,18 +114,27 @@ WSGI_APPLICATION = 'mealplanner.wsgi.application'
 #         'PORT':  [Port from heroku postgres]
 #     }
 # }
+DATABASE_URL = 'postgres://ctrlxeeyoaygcw:844fab534ba45014a982b736a51a771bfe8552840e73eb0dac78a909775854c6@ec2-54-87-179-4.compute-1.amazonaws.com:5432/d5857vtb9kg3c0'
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'mydb',
+#         'USER': 'myuser',
+#         'PASSWORD': 'mypass',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'myuser',
-        'PASSWORD': 'mypass',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(),
 }
-DATABASES['default'] = dj_database_url.config(
-    conn_max_age=600, ssl_require=True)
+
+DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
+
+# DATABASES['default'] = dj_database_url.config(
+#     conn_max_age=600, ssl_require=True)
 
 
 # Password validation
