@@ -8,6 +8,10 @@ django = "*"
 gunicorn = "*"
 django-cors-headers = "*"
 psycopg2 = "*"
+jsonfield = "*"
+django-environ = "*"
+pytest-django = "*"
+pytest-cov = "*"
 
 [dev-packages]
 

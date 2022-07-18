@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
+from jsonfield import JSONField
+
 
 # Create your models here.
 
@@ -13,7 +14,7 @@ class Diet(models.Model):
     gluten_free = models.BooleanField(default=False)
     ketogenic = models.BooleanField(default=False)
     pescetarian = models.BooleanField(default=False)
-    peleo = models.BooleanField(default=False)
+    paleo = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user_id.username
@@ -33,8 +34,8 @@ class Meals(models.Model):
 
 class MealHistory(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    date = models.DateTimeField(auto_now=True)
-    recipes = models.CharField(max_length=512)
+    today_date = models.CharField(max_length=50)
+    recipes = JSONField(models.CharField(max_length=512))
 
     def __str__(self):
         return self.user_id.username
@@ -46,9 +47,10 @@ class Preferences(models.Model):
         Diet, on_delete=models.SET_NULL, blank=True, null=True)
     meals_id = models.ForeignKey(
         Meals, on_delete=models.SET_NULL, blank=True, null=True)
-    calories_limit = models.IntegerField()
-    intolorences = models.CharField(max_length=50)  # make this an array
-    budget = models.DecimalField(max_digits=6, decimal_places=2)
+    calories_limit = models.CharField(max_length=500)
+    intolorences = JSONField(models.CharField(
+        max_length=100))  # make this an array
+    budget = models.CharField(max_length=500)
 
     def __str__(self):
         return self.user_id.username
