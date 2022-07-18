@@ -49,10 +49,10 @@ class Preferences(models.Model):
         Diet, on_delete=models.SET_NULL, blank=True, null=True)
     meals_id = models.ForeignKey(
         Meals, on_delete=models.SET_NULL, blank=True, null=True)
-    calories_limit = models.IntegerField()
+    calories_limit = models.CharField(max_length=500)
     intolorences = JSONField(models.CharField(
-        max_length=50))  # make this an array
-    budget = models.IntegerField()
+        max_length=100))  # make this an array
+    budget = models.CharField(max_length=500)
 
     def __str__(self):
         return self.user_id.username

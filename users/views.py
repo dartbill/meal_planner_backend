@@ -5,6 +5,7 @@ from django.core import serializers
 from django.http import JsonResponse, HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from itertools import chain
 from .models import Preferences, Diet, Meals, MealHistory
 import json
 
@@ -68,6 +69,7 @@ def create_prefs(request):
 
         # split up the data
         pref_information = information['prefs']
+        print(pref_information)
         meal_info = information['meals']
         diet_information = information['diet']
 
@@ -138,10 +140,11 @@ def update_pref(request):
         elif request.method == "GET":
             qs = Preferences.objects.filter(user_id=user).values(
                 'calories_limit', 'intolorences', 'budget')
-            print(qs)
-            # qs_json = serializers.serialize('json', qs)
-            # print(qs_json)
-            return HttpResponse(qs,  content_type='application/json')
+            qs2 = Meals.objects.filter(user_id=user).values(
+                'breakfast', 'lunch', 'dinner', 'dessert', 'snack')
+            print(qs2)
+            result_list = list(chain(qs, qs2))
+            return HttpResponse(result_list,  content_type='application/json')
     else:
         return JsonResponse({'error': 'User not authenticated'})
 

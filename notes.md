@@ -20,7 +20,12 @@
 ### Preferences
 - path: `createprefs/`
     - method: POST
-        - accepts: `{"prefs":{"calories_limit": 3, "intolorences": ["dairy","egg"], "budget": 2},"diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true},"meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}}`
+
+        - accepts: `{"prefs":{"calories_limit": {"breakfast":2,"lunch":2,"dinner":2,"snack":2,"dessert":2,}, 
+        "intolorences": ["dairy","egg"], "budget": {"breakfast":2,"lunch":2,"dinner":2,"snack":2,"dessert":2,}},
+        "diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true},
+        "meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}}`
+
         - returns: `{'message': 'Preferences successfully added'}`
 - path: `prefs/`
     - method: PATCH 
@@ -29,9 +34,8 @@
         <!-- add budget for each meals -->
     - method: GET
         - accepts: Null
-        - returns: `{'calories_limit': 3, 'intolorences': ['1', '2'], 'budget': 2}`
-        <!-- return meal prefs as well  -->
-{'breakfast':{'budget':2, "calories':2},'lunch':{'budget':2, "calories':2},'dinner':{'budget':2, "calories':2}, 'dessert':{'budget':2, "calories':2},'snack':{'budget':2, "calories':2}}
+        - returns: `{'calories_limit': "{'breakfast': 2, 'lunch': 2, 'dinner': 2, 'snack': 2, 'dessert': 2}", 'intolorences': ['dairy', 'egg'], 'budget': "{'breakfast': 2, 'lunch': 2, 'dinner': 2, 'snack': 2, 'dessert': 2}"}{'breakfast': True, 'lunch': True, 'dinner': True, 'dessert': True, 'snack': True}{'breakfast': True, 'lunch': True, 'dinner': True, 'dessert': True, 'snack': True}`
+
 
 ### Meal History
 - path `mealhistory/`
