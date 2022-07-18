@@ -92,12 +92,12 @@ WSGI_APPLICATION = 'mealplanner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     # "default": env.dj_db_url("DATABASE_URL")
@@ -114,7 +114,7 @@ DATABASES = {
 #         'PORT':  [Port from heroku postgres]
 #     }
 # }
-# DATABASE_URL = 'postgres://ctrlxeeyoaygcw:844fab534ba45014a982b736a51a771bfe8552840e73eb0dac78a909775854c6@ec2-54-87-179-4.compute-1.amazonaws.com:5432/d5857vtb9kg3c0'
+DATABASE_URL = 'postgres://ctrlxeeyoaygcw:844fab534ba45014a982b736a51a771bfe8552840e73eb0dac78a909775854c6@ec2-54-87-179-4.compute-1.amazonaws.com:5432/d5857vtb9kg3c0'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -126,12 +126,12 @@ DATABASES = {
 #     }
 # }
 
-# DATABASES = {
-#     'default': dj_database_url.config(),
-# }
+DATABASES = {
+    'default': dj_database_url.config(),
+}
 
-# DATABASES['default'] = dj_database_url.config()
-# DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
+DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 # DATABASES['default'] = dj_database_url.config(
 #     conn_max_age=600, ssl_require=True)
