@@ -52,20 +52,57 @@
 ### Meal History
 - path `mealhistory/`
     - method: POST
-        - accepts:`{"recipes": ["1", "2", "3"], "date":"18/07/2022"}`
+        - accepts:`    {
+      "today_date": "18/07/2022",
+      "recipes": {
+        "breakfast": [{"id":"", "title": "", "fave":""}], 
+         "lunch": [{"id":"", "title": "", "fave":""}], 
+        "dinner": [{"id":"", "title": "", "fave":""}], 
+         "dessert": [{"id":"", "title": "", "fave":""}], 
+         "snacks": [{"id":"", "title": "", "fave":""}]}}`
         - returns: `{'message': 'Meal history successfully added'}`
     - method GET
         - accepts: Null
-        - returns: `[
-  {
-    "recipes": [
-      "1",
-      "2",
-      "3"
-    ],
+        - returns: `{
+    "recipes": {
+      "breakfast": [
+        {
+          "id": "",
+          "title": "",
+          "fave": ""
+        }
+      ],
+      "lunch": [
+        {
+          "id": "",
+          "title": "",
+          "fave": ""
+        }
+      ],
+      "dinner": [
+        {
+          "id": "",
+          "title": "",
+          "fave": ""
+        }
+      ],
+      "dessert": [
+        {
+          "id": "",
+          "title": "",
+          "fave": ""
+        }
+      ],
+      "snacks": [
+        {
+          "id": "",
+          "title": "",
+          "fave": ""
+        }
+      ]
+    },
     "today_date": "18/07/2022"
-  }
-]`
+  }`
         <!-- datetime to accept a string -->
 
 ### Email
