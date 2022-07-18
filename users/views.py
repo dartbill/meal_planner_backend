@@ -161,17 +161,18 @@ def meal_history(request):
         # get information from FE
         if request.method == 'POST':
             meal_info = json.loads(request.body)
+            print(meal_info['date'])
             # get user information
             user = request.user
             # create meal history object
             MealHistory.objects.create(
-                user_id=user, recipes=meal_info['recipes']
+                user_id=user, today_date=meal_info['date'], recipes=meal_info['recipes']
             )
             return JsonResponse({'message': 'Meal history successfully added'})
         elif request.method == 'GET':
             user = request.user
             qs = MealHistory.objects.filter(
-                user_id=user).values('recipes', 'date')
+                user_id=user).values('recipes', 'today_date')
             print(qs)
             # qs_json = serializers.serialize('json', qs)
             # print(qs_json)
