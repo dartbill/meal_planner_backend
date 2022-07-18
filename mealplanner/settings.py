@@ -17,6 +17,8 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 env = environ.Env()
 environ.Env.read_env()
@@ -95,10 +97,10 @@ WSGI_APPLICATION = 'mealplanner.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    # "default": env.dj_db_url("DATABASE_URL")
-    'default':  dj_database_url.config()
-}
+# DATABASES = {
+#     # "default": env.dj_db_url("DATABASE_URL")
+#     'default':  dj_database_url.config()
+# }
 
 
 # DATABASES = {
