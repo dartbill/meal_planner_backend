@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
 from jsonfield import JSONField
-from datetime import date
 
 
 # Create your models here.
@@ -36,7 +34,7 @@ class Meals(models.Model):
 
 class MealHistory(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    date = models.DateField(auto_now_add=True)
+    today_date = models.CharField(max_length=50)
     recipes = JSONField(models.CharField(max_length=512))
 
     def __str__(self):
@@ -49,10 +47,10 @@ class Preferences(models.Model):
         Diet, on_delete=models.SET_NULL, blank=True, null=True)
     meals_id = models.ForeignKey(
         Meals, on_delete=models.SET_NULL, blank=True, null=True)
-    calories_limit = models.IntegerField()
+    calories_limit = models.CharField(max_length=500)
     intolorences = JSONField(models.CharField(
-        max_length=50))  # make this an array
-    budget = models.IntegerField()
+        max_length=100))  # make this an array
+    budget = models.CharField(max_length=500)
 
     def __str__(self):
         return self.user_id.username

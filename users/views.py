@@ -1,10 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.core import serializers
 from django.http import JsonResponse, HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
+from itertools import chain
 from .models import Preferences, Diet, Meals, MealHistory
 import json
 
@@ -68,6 +67,7 @@ def create_prefs(request):
 
         # split up the data
         pref_information = information['prefs']
+        print(pref_information)
         meal_info = information['meals']
         diet_information = information['diet']
 
@@ -138,10 +138,11 @@ def update_pref(request):
         elif request.method == "GET":
             qs = Preferences.objects.filter(user_id=user).values(
                 'calories_limit', 'intolorences', 'budget')
-            print(qs)
-            # qs_json = serializers.serialize('json', qs)
-            # print(qs_json)
-            return HttpResponse(qs,  content_type='application/json')
+            qs2 = Meals.objects.filter(user_id=user).values(
+                'breakfast', 'lunch', 'dinner', 'dessert', 'snack')
+            print(qs2)
+            result_list = list(chain(qs, qs2))
+            return HttpResponse(result_list,  content_type='application/json')
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
@@ -158,17 +159,18 @@ def meal_history(request):
         # get information from FE
         if request.method == 'POST':
             meal_info = json.loads(request.body)
+            print(meal_info['date'])
             # get user information
             user = request.user
             # create meal history object
             MealHistory.objects.create(
-                user_id=user, recipes=meal_info['recipes']
+                user_id=user, today_date=meal_info['date'], recipes=meal_info['recipes']
             )
             return JsonResponse({'message': 'Meal history successfully added'})
         elif request.method == 'GET':
             user = request.user
             qs = MealHistory.objects.filter(
-                user_id=user).values('recipes', 'date')
+                user_id=user).values('recipes', 'today_date')
             print(qs)
             # qs_json = serializers.serialize('json', qs)
             # print(qs_json)
