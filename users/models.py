@@ -36,7 +36,7 @@ class Meals(models.Model):
 
 class MealHistory(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    date = models.DateField(auto_now_add=True)
+    date = models.CharField(max_length=50)
     recipes = JSONField(models.CharField(max_length=512))
 
     def __str__(self):
