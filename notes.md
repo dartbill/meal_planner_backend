@@ -33,7 +33,7 @@
 ### Meal History
 - path `mealhistory/`
     - method: POST
-        - accepts:`{"recipes": ['1', '2', '3']}`
+        - accepts:`{"recipes": ["1", "2", "3"]}`
         - returns: `{'message': 'Meal history successfully added'}`
     - method GET
         - accepts: Null
