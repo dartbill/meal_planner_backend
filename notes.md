@@ -21,7 +21,7 @@
 - path: `createprefs/`
     - method: POST
 
-        - accepts: `{"prefs":{"calories_limit": {"breakfast":2,"lunch":2,"dinner":2,"snack":2,"dessert":2,}, "intolorences": ["dairy","egg"], "budget": {"breakfast":2,"lunch":2 "dinner":2,"snack":2,"dessert":2,}}, "diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true}, "meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}}`
+        - accepts: `{"prefs":{"calories_limit": {"breakfast":2,"lunch":2,"dinner":2,"snack":2,"dessert":2}, "intolorences": ["dairy","egg"], "budget": {"breakfast":2,"lunch":2, "dinner":2,"snack":2,"dessert":2}}, "diet":{"vegan": true,"vegetarian" : true,"glutenfree": true,"ketogenic": true, "pescetarian": true, "paleo": true}, "meals":{"breakfast": true,"lunch": true,"dinner": true,"dessert": true,"snack": true}}`
 
         - returns: `{'message': 'Preferences successfully added'}`
 - path: `prefs/`
@@ -30,7 +30,23 @@
         - returns: `{'message': 'Preferences successfully updated'}`
     - method: GET
         - accepts: Null
-        - returns: `{'calories_limit': "{'breakfast': 2, 'lunch': 2, 'dinner': 2, 'snack': 2, 'dessert': 2}", 'intolorences': ['dairy', 'egg'], 'budget': "{'breakfast': 2, 'lunch': 2, 'dinner': 2, 'snack': 2, 'dessert': 2}"}{'breakfast': True, 'lunch': True, 'dinner': True, 'dessert': True, 'snack': True}{'breakfast': True, 'lunch': True, 'dinner': True, 'dessert': True, 'snack': True}`
+        - returns: `[
+  {
+    "calories_limit": "{'breakfast': 2, 'lunch': 2, 'dinner': 2, 'snack': 2, 'dessert': 2}",
+    "intolorences": [
+      "dairy",
+      "egg"
+    ],
+    "budget": "{'breakfast': 2, 'lunch': 2, 'dinner': 2, 'snack': 2, 'dessert': 2}"
+  },
+  {
+    "breakfast": true,
+    "lunch": true,
+    "dinner": true,
+    "dessert": true,
+    "snack": true
+  }
+]`
 
 
 ### Meal History
@@ -40,7 +56,16 @@
         - returns: `{'message': 'Meal history successfully added'}`
     - method GET
         - accepts: Null
-        - returns: `{'recipes': {'breakfast': [{'id': '', 'title': '', 'fave': ''}], 'lunch': [{'id': '', 'title': '', 'fave': ''}], 'dinner': [{'id': '', 'title': '', 'fave': ''}], 'dessert': [{'id': '', 'title': '', 'fave': ''}], 'snacks': [{'id': '', 'title': 'fgdfgfd', 'fave': ''}]}, 'date': datetime.datetime(2022, 7, 15, 16, 43, 29, 504997, tzinfo=datetime.timezone.utc)}`
+        - returns: `[
+  {
+    "recipes": [
+      "1",
+      "2",
+      "3"
+    ],
+    "today_date": "18/07/2022"
+  }
+]`
         <!-- datetime to accept a string -->
 
 ### Email

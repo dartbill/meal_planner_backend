@@ -140,9 +140,9 @@ def update_pref(request):
                 'calories_limit', 'intolorences', 'budget')
             qs2 = Meals.objects.filter(user_id=user).values(
                 'breakfast', 'lunch', 'dinner', 'dessert', 'snack')
-            print(qs2)
             result_list = list(chain(qs, qs2))
-            return HttpResponse(result_list,  content_type='application/json')
+            print(result_list)
+            return JsonResponse(result_list, safe=False)
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
@@ -172,9 +172,8 @@ def meal_history(request):
             qs = MealHistory.objects.filter(
                 user_id=user).values('recipes', 'today_date')
             print(qs)
-            # qs_json = serializers.serialize('json', qs)
-            # print(qs_json)
-            return HttpResponse(qs,  content_type='application/json')
+            result_list = list(qs)
+            return JsonResponse(result_list, safe=False)
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
