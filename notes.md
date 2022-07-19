@@ -108,6 +108,7 @@
 ### Email
 - path `email/`
     - method: POST
-        - accepts: `{"message":"hi this is from the web!"}`
+        - accepts: `{"message":"hi this is from the web!",
+"html": "<h1>test html</h1>"}`
         - returns: `{'message': 'email sent successfully'}`
 
