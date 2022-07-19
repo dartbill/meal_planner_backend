@@ -92,28 +92,13 @@ WSGI_APPLICATION = 'mealplanner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
-# DATABASES = {
-#     # "default": env.dj_db_url("DATABASE_URL")
-#     'default':  dj_database_url.config()
-# }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': [database from heroku postgres]
-#         'USER': [user from heroku postgres]
-#         'PASSWORD': [password from heroku postgres]
-#         'HOST': [host from heroku postgres]
-#         'PORT':  [Port from heroku postgres]
-#     }
-# }
 DATABASE_URL = 'postgres://ctrlxeeyoaygcw:844fab534ba45014a982b736a51a771bfe8552840e73eb0dac78a909775854c6@ec2-54-87-179-4.compute-1.amazonaws.com:5432/d5857vtb9kg3c0'
 # DATABASES = {
 #     'default': {
@@ -126,12 +111,13 @@ DATABASE_URL = 'postgres://ctrlxeeyoaygcw:844fab534ba45014a982b736a51a771bfe8552
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.config(),
-}
+# DATABASES = {
+#     'default': dj_database_url.config(),
 
-DATABASES['default'] = dj_database_url.config()
-DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
+# }
+
+# DATABASES['default'] = dj_database_url.config()
+# DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 
 # DATABASES['default'] = dj_database_url.config(
 #     conn_max_age=600, ssl_require=True)
@@ -186,3 +172,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
+
+# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+# NOSE_ARGS = [
+#     '--with-coverage',
+#     '--cover-package=foo,bar',
+# ]

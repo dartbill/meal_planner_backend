@@ -7,3 +7,5 @@
 - heroku link: https://mealplannerserver.herokuapp.com/
 
 `python3 manage.py migrate --run-syncdb`
+
+`pytest --cov --cov-report term-missing      `
