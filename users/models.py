@@ -35,7 +35,7 @@ class Meals(models.Model):
 class MealHistory(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     today_date = models.CharField(max_length=50)
-    recipes = JSONField(models.CharField(max_length=512))
+    recipes = JSONField(models.CharField())
 
     def __str__(self):
         return self.user_id.username
