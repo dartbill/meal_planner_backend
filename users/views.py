@@ -158,13 +158,18 @@ def meal_history(request):
     if request.user.is_authenticated:
         # get information from FE
         if request.method == 'POST':
-            meal_info = json.loads(request.body)
-            print(meal_info['date'])
+            meal_info = [json.loads(request.body)]
+            print("this is all the meals ", meal_info)
+            info = meal_info[0]
+            print(info)
+            date_info = info["today_date"]
+            print("this is the date ", date_info)
+            recipe_info = info['recipes']
             # get user information
             user = request.user
             # create meal history object
             MealHistory.objects.create(
-                user_id=user, today_date=meal_info['date'], recipes=meal_info['recipes']
+                user_id=user, today_date=date_info, recipes=recipe_info
             )
             return JsonResponse({'message': 'Meal history successfully added'})
         elif request.method == 'GET':

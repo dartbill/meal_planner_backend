@@ -12,6 +12,7 @@ jsonfield = "*"
 django-environ = "*"
 pytest-django = "*"
 pytest-cov = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
