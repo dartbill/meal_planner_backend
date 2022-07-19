@@ -150,6 +150,8 @@ def update_pref(request):
 
 
 # set and get meal history
+
+
 def meal_history(request):
     # to be deleted when we can log in
     user1 = authenticate(request, username='billie', password='Hello')
