@@ -140,7 +140,9 @@ def update_pref(request):
                 'calories_limit', 'intolorences', 'budget')
             qs2 = Meals.objects.filter(user_id=user).values(
                 'breakfast', 'lunch', 'dinner', 'dessert', 'snack')
-            result_list = list(chain(qs, qs2))
+            qs3 = Diet.objects.filter(user_id=user).values(
+                'vegan', 'vegetarian', 'gluten_free', 'ketogenic', 'pescetarian', 'paleo')
+            result_list = list(chain(qs, qs2, qs3))
             print(result_list)
             return JsonResponse(result_list, safe=False)
     else:
