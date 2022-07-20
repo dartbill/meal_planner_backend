@@ -33,10 +33,10 @@ def user_login(request):
 # logout route
 def user_logout(request):
     # to be deleted when we can log in
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
-    #########
+    # user1 = authenticate(request, username='billie', password='Hello')
+    # if user1 is not None:
+    #     login(request, user1)
+    # #########
     logout(request)
     return JsonResponse({'message': 'User logged out'})
 
@@ -54,9 +54,9 @@ def new_user(request):
 # create preferences
 def create_prefs(request):
     # to be deleted when we can log in
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
+    # user1 = authenticate(request, username='billie', password='Hello')
+    # if user1 is not None:
+    #     login(request, user1)
     #########
     # check if user is logged in
     if request.user.is_authenticated:
@@ -104,9 +104,9 @@ def create_prefs(request):
 # update and get preferences
 def update_pref(request):
     # to be deleted when we can log in
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
+    # user1 = authenticate(request, username='billie', password='Hello')
+    # if user1 is not None:
+    #     login(request, user1)
     #########
     # check if user is logged in
     if request.user.is_authenticated:
@@ -150,21 +150,21 @@ def update_pref(request):
 # set and get meal history
 def meal_history(request):
     # to be deleted when we can log in
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
+    # user1 = authenticate(request, username='billie', password='Hello')
+    # if user1 is not None:
+    #     login(request, user1)
     #########
     # check if user is logged in
     if request.user.is_authenticated:
         # get information from FE
         if request.method == 'POST':
             meal_info = json.loads(request.body)
-            print(meal_info['date'])
+            # print(meal_info['date'])
             # get user information
             user = request.user
             # create meal history object
             MealHistory.objects.create(
-                user_id=user, today_date=meal_info['date'], recipes=meal_info['recipes']
+                user_id=user, today_date=meal_info['today_date'], recipes=meal_info['recipes']
             )
             return JsonResponse({'message': 'Meal history successfully added'})
         elif request.method == 'GET':
@@ -180,9 +180,9 @@ def meal_history(request):
 
 # send email to user
 def send_email(request):
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
+    # user1 = authenticate(request, username='billie', password='Hello')
+    # if user1 is not None:
+    #     login(request, user1)
     if request.user.is_authenticated:
         user = request.user
         email_info = json.loads(request.body)
