@@ -67,8 +67,8 @@ def new_user(request):
 # create preferences
 def create_prefs(request):
     # to be deleted when we can log in
-    username = request.session.get['username']
-    password = request.session.get['password']
+    username = request.session['username']
+    password = request.session['password']
     user1 = authenticate(request, username=username, password=password)
     if user1 is not None:
         login(request, user1)
@@ -120,8 +120,8 @@ def create_prefs(request):
 # update and get preferences
 def update_pref(request):
     # to be deleted when we can log in
-    username = request.session.get['username']
-    password = request.session.get['password']
+    username = request.session['username']
+    password = request.session['password']
     user1 = authenticate(request, username=username, password=password)
     if user1 is not None:
         login(request, user1)
@@ -173,8 +173,8 @@ def update_pref(request):
 
 def meal_history(request):
     # to be deleted when we can log in
-    username = request.session.get['username']
-    password = request.session.get['password']
+    username = request.session['username']
+    password = request.session['password']
     user1 = authenticate(request, username=username, password=password)
     if user1 is not None:
         login(request, user1)
@@ -206,8 +206,8 @@ def meal_history(request):
 
 # send email to user
 def send_email(request):
-    username = request.session.get['username']
-    password = request.session.get['password']
+    username = request.session['username']
+    password = request.session['password']
     user1 = authenticate(request, username=username, password=password)
     if user1 is not None:
         login(request, user1)
