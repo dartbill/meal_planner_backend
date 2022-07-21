@@ -25,8 +25,8 @@ def user_login(request):
     user = authenticate(request, username=username, password=password)
     # check user exists
     if user is not None:
-        request.session['logged_in'] = User
         login(request, user)
+        request.session['logged_in'] = request.user
         return JsonResponse({'message': 'login successful'})
     else:
         return JsonResponse({'error': 'login unsuccessful'})
@@ -62,7 +62,8 @@ def create_prefs(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-    if request.session['logged_in'].user.is_authenticated:
+    user = request.session.get['logged_in']
+    if user.is_authenticated:
         # get data from FE
         information = json.loads(request.body)
         # get user information
@@ -112,7 +113,8 @@ def update_pref(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-    if request.session['logged_in'].user.is_authenticated:
+    user = request.session.get['logged_in']
+    if user.is_authenticated:
         # get user information
         user = request.user
 
@@ -162,7 +164,8 @@ def meal_history(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-    if request.session['logged_in'].user.is_authenticated:
+    user = request.session.get['logged_in']
+    if user.is_authenticated:
         # get information from FE
         if request.method == 'POST':
             meal_info = json.loads(request.body)
@@ -190,7 +193,8 @@ def send_email(request):
     # user1 = authenticate(request, username='billie', password='Hello')
     # if user1 is not None:
     #     login(request, user1)
-    if request.session['logged_in'].user.is_authenticated:
+    user = request.session.get['logged_in']
+    if user.is_authenticated:
         user = request.user
         email_info = json.loads(request.body)
         send_mail(
