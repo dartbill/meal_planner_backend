@@ -37,9 +37,9 @@ def user_login(request):
 def user_logout(request):
 
     # to be deleted when we can log in
-    # user1 = authenticate(request, username='billie', password='Hello')
-    # if user1 is not None:
-    #     login(request, user1)
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
     #########
     logout(request)
     return JsonResponse({'message': 'User logged out'})
@@ -49,20 +49,12 @@ def user_logout(request):
 def new_user(request):
     # get information from FE
     user_information = json.loads(request.body)
-    # create user with data
+
     User.objects.create_user(
         username=user_information['name'], email=user_information['email'], password=user_information['password'])
 
-    email = user_information['email']
     password = user_information['password']
     username = user_information['name']
-    # request.session['username'] = username
-    # request.session['password'] = password
-    # username = request.session.get('username')
-    # password = request.session.get('password')
-    # request.session.save()
-    # print(password)
-    # print(username)
     user = authenticate(request, username=username, password=password)
     login(request, user)
 
@@ -81,6 +73,9 @@ def create_prefs(request):
     # user1 = authenticate(request, username=username, password=password)
     # if user1 is not None:
     #     login(request, user1)
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
     #########
     # check if user is logged in
 
@@ -134,6 +129,9 @@ def update_pref(request):
     # user1 = authenticate(request, username=username, password=password)
     # if user1 is not None:
     #     login(request, user1)
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
     #########
     # check if user is logged in
 
@@ -189,7 +187,9 @@ def meal_history(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
     if request.user.is_authenticated:
         # get information from FE
         if request.method == 'POST':
@@ -224,7 +224,9 @@ def send_email(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
     if request.user.is_authenticated:
         user = request.user
         email_info = json.loads(request.body)
