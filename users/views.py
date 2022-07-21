@@ -67,7 +67,19 @@ def new_user(request):
     return JsonResponse({'message': 'user successfully created'})
 
 
+def setcookie(request):
+    html = HttpResponse("Cookie Set")
+    user_information = json.loads(request.body)
+    email = user_information['email']
+    password = user_information['password']
+    username = User.objects.get(email=email.lower()).username
+    html.set_cookie('username', username)
+    html.set_cookie('password', password)
+    return html
+
 # create preferences
+
+
 def create_prefs(request):
     # to be deleted when we can log in
     # username = request.session.get('username')
