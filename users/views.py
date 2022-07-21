@@ -58,38 +58,23 @@ def new_user(request):
     username = User.objects.get(email=email.lower()).username
     request.session['username'] = username
     request.session['password'] = password
-    response = HttpResponse("Cookie Set")
-    response.set_cookie('username', username)
-    response.set_cookie('password', password)
+    username = request.session.get('username')
+    password = request.session.get('password')
+    print(password)
+    print(username)
     user = authenticate(request, username=username, password=password)
     login(request, user)
 
     return JsonResponse({'message': 'user successfully created'})
 
 
-def setcookie(request):
-    html = HttpResponse("Cookie Set")
-    user_information = json.loads(request.body)
-    email = user_information['email']
-    password = user_information['password']
-    username = User.objects.get(email=email.lower()).username
-    html.set_cookie('username', username)
-    html.set_cookie('password', password)
-    username = request.COOKIES['username']
-    password = request.COOKIES['password']
-    print(password)
-    print(username)
-    return html
-
 # create preferences
 
 
 def create_prefs(request):
     # to be deleted when we can log in
-    # username = request.session.get('username')
-    # password = request.session.get('password')
-    username = request.COOKIES['username']
-    password = request.COOKIES['password']
+    username = request.session.get('username')
+    password = request.session.get('password')
     print(password)
     print(username)
     user1 = authenticate(request, username=username, password=password)
