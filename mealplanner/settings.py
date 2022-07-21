@@ -137,9 +137,6 @@ DATABASES['default'] = dj_database_url.config(default=DATABASE_URL)
 # DATABASES['default'] = dj_database_url.config(
 #     conn_max_age=600, ssl_require=True)
 
-SESSION_COOKIE_DOMAIN = 'mealplannerserver.herokuapp.com'
-SESSION_SAVE_EVERY_REQUEST = True
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

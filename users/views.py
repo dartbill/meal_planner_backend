@@ -136,40 +136,36 @@ def update_pref(request):
     # check if user is logged in
 
     if request.user.is_authenticated:
-        # get user information
-        user = request.user
 
+        user = request.user
         if request.method == 'PATCH':
-            # get information from FE
+
             information = json.loads(request.body)
 
-            # Split data up
             pref_information = information['prefs']
             meal_info = information['meals']
             diet_information = information['diet']
 
-            # update preferences
             Preferences.objects.filter(user_id=user).update(calories_limit=pref_information['calories_limit'], intolorences=pref_information[
                 'intolorences'], budget=pref_information['budget'])
-
-            # update meals
             Meals.objects.filter(user_id=user).update(breakfast=meal_info['breakfast'], lunch=meal_info['lunch'], dinner=meal_info['dinner'],
                                                       dessert=meal_info['dessert'], snack=meal_info['snack'])
-
-            # update diet
-            Diet.objects.filter(user_id=user).update(user_id=user, vegan=diet_information['vegan'], vegetarian=diet_information['vegetarian'], gluten_free=diet_information['glutenfree'], ketogenic=diet_information['ketogenic'], pescetarian=diet_information[
-                'pescetarian'], paleo=diet_information['paleo'])
+            Diet.objects.filter(user_id=user).update(user_id=user, vegan=diet_information['vegan'], vegetarian=diet_information['vegetarian'],
+                                                     gluten_free=diet_information[
+                                                         'glutenfree'], ketogenic=diet_information['ketogenic'],
+                                                     pescetarian=diet_information['pescetarian'], paleo=diet_information['paleo'])
 
             return JsonResponse({'message': 'Preferences successfully updated'})
         elif request.method == "GET":
+            # get queries by values
             qs = Preferences.objects.filter(user_id=user).values(
                 'calories_limit', 'intolorences', 'budget')
             qs2 = Meals.objects.filter(user_id=user).values(
                 'breakfast', 'lunch', 'dinner', 'dessert', 'snack')
             qs3 = Diet.objects.filter(user_id=user).values(
                 'vegan', 'vegetarian', 'gluten_free', 'ketogenic', 'pescetarian', 'paleo')
+            # chain the queries in the format FrontEnd requires
             result_list = list(chain(qs, qs2, qs3))
-            print(result_list)
             return JsonResponse(result_list, safe=False)
     else:
         return JsonResponse({'error': 'User not authenticated'})
@@ -194,7 +190,6 @@ def meal_history(request):
         # get information from FE
         if request.method == 'POST':
             meal_info = json.loads(request.body)
-            # print(meal_info['date'])
             # get user information
             user = request.user
             # create meal history object
@@ -206,7 +201,6 @@ def meal_history(request):
             user = request.user
             qs = MealHistory.objects.filter(
                 user_id=user).values('recipes', 'today_date')
-            print(qs)
             result_list = list(qs)
             return JsonResponse(result_list, safe=False)
     else:
@@ -223,10 +217,10 @@ def send_email(request):
     # if user1 is not None:
     #     login(request, user1)
     #########
-    # check if user is logged in
     user1 = authenticate(request, username='billie', password='Hello')
     if user1 is not None:
         login(request, user1)
+    # check if user is logged ins
     if request.user.is_authenticated:
         user = request.user
         email_info = json.loads(request.body)
