@@ -37,6 +37,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['mealplannerserver.herokuapp.com',
                  '127.0.0.1']
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = ['https://hoppscotch.io']
 # Application definition
 
