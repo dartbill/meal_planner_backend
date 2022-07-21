@@ -60,6 +60,7 @@ def new_user(request):
     request.session['password'] = password
     username = request.session.get('username')
     password = request.session.get('password')
+    request.session.save()
     print(password)
     print(username)
     user = authenticate(request, username=username, password=password)
