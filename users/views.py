@@ -26,7 +26,8 @@ def user_login(request):
     # check user exists
     if user is not None:
         login(request, user)
-        request.session['logged_in'] = request.user
+        request.session['username'] = username
+        request.session['password'] = password
         return JsonResponse({'message': 'login successful'})
     else:
         return JsonResponse({'error': 'login unsuccessful'})
@@ -57,7 +58,8 @@ def new_user(request):
     username = User.objects.get(email=email.lower()).username
     user = authenticate(request, username=username, password=password)
     login(request, user)
-    request.session['logged_in'] = request.user
+    request.session['username'] = username
+    request.session['password'] = password
 
     return JsonResponse({'message': 'user successfully created'})
 
@@ -65,13 +67,15 @@ def new_user(request):
 # create preferences
 def create_prefs(request):
     # to be deleted when we can log in
-    # user1 = authenticate(request, username='billie', password='Hello')
-    # if user1 is not None:
-    #     login(request, user1)
+    username = request.session.get['username']
+    password = request.session.get['password']
+    user1 = authenticate(request, username=username, password=password)
+    if user1 is not None:
+        login(request, user1)
     #########
     # check if user is logged in
-    user = request.session.get['logged_in']
-    if user.is_authenticated:
+
+    if request.user.is_authenticated:
         # get data from FE
         information = json.loads(request.body)
         # get user information
@@ -116,13 +120,15 @@ def create_prefs(request):
 # update and get preferences
 def update_pref(request):
     # to be deleted when we can log in
-    # user1 = authenticate(request, username='billie', password='Hello')
-    # if user1 is not None:
-    #     login(request, user1)
+    username = request.session.get['username']
+    password = request.session.get['password']
+    user1 = authenticate(request, username=username, password=password)
+    if user1 is not None:
+        login(request, user1)
     #########
     # check if user is logged in
-    user = request.session.get['logged_in']
-    if user.is_authenticated:
+
+    if request.user.is_authenticated:
         # get user information
         user = request.user
 
@@ -167,13 +173,15 @@ def update_pref(request):
 
 def meal_history(request):
     # to be deleted when we can log in
-    # user1 = authenticate(request, username='billie', password='Hello')
-    # if user1 is not None:
-    #     login(request, user1)
+    username = request.session.get['username']
+    password = request.session.get['password']
+    user1 = authenticate(request, username=username, password=password)
+    if user1 is not None:
+        login(request, user1)
     #########
     # check if user is logged in
-    user = request.session.get['logged_in']
-    if user.is_authenticated:
+
+    if request.user.is_authenticated:
         # get information from FE
         if request.method == 'POST':
             meal_info = json.loads(request.body)
@@ -198,11 +206,15 @@ def meal_history(request):
 
 # send email to user
 def send_email(request):
-    # user1 = authenticate(request, username='billie', password='Hello')
-    # if user1 is not None:
-    #     login(request, user1)
-    user = request.session.get['logged_in']
-    if user.is_authenticated:
+    username = request.session.get['username']
+    password = request.session.get['password']
+    user1 = authenticate(request, username=username, password=password)
+    if user1 is not None:
+        login(request, user1)
+    #########
+    # check if user is logged in
+
+    if request.user.is_authenticated:
         user = request.user
         email_info = json.loads(request.body)
         send_mail(
