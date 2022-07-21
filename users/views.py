@@ -199,7 +199,7 @@ def meal_history(request):
             user = request.user
             # create meal history object
             MealHistory.objects.create(
-                user_id=user, today_date=meal_info['date'], recipes=meal_info['recipes']
+                user_id=user, today_date=meal_info['today_date'], recipes=meal_info['recipes']
             )
             return JsonResponse({'message': 'Meal history successfully added'})
         elif request.method == 'GET':
