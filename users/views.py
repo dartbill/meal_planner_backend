@@ -69,6 +69,8 @@ def create_prefs(request):
     # to be deleted when we can log in
     username = request.session.get('username')
     password = request.session.get('password')
+    print(password)
+    print(username)
     user1 = authenticate(request, username=username, password=password)
     if user1 is not None:
         login(request, user1)
@@ -208,6 +210,8 @@ def meal_history(request):
 def send_email(request):
     username = request.session.get('username')
     password = request.session.get('password')
+    print(password)
+    print(username)
     user1 = authenticate(request, username=username, password=password)
     if user1 is not None:
         login(request, user1)
