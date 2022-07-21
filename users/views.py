@@ -51,6 +51,14 @@ def new_user(request):
     # create user with data
     User.objects.create_user(
         username=user_information['name'], email=user_information['email'], password=user_information['password'])
+
+    email = user_information['email']
+    password = user_information['password']
+    username = User.objects.get(email=email.lower()).username
+    user = authenticate(request, username=username, password=password)
+    login(request, user)
+    request.session['logged_in'] = request.user
+
     return JsonResponse({'message': 'user successfully created'})
 
 
