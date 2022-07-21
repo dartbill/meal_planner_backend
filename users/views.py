@@ -75,6 +75,10 @@ def setcookie(request):
     username = User.objects.get(email=email.lower()).username
     html.set_cookie('username', username)
     html.set_cookie('password', password)
+    username = request.COOKIES['username']
+    password = request.COOKIES['password']
+    print(password)
+    print(username)
     return html
 
 # create preferences
