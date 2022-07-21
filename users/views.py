@@ -16,6 +16,7 @@ def home(request):
 # login route
 def user_login(request):
     # gets response from FE
+
     user_information = json.loads(request.body)
     email = user_information['email']
     password = user_information['password']
@@ -24,6 +25,7 @@ def user_login(request):
     user = authenticate(request, username=username, password=password)
     # check user exists
     if user is not None:
+        request.session['logged_in'] = User
         login(request, user)
         return JsonResponse({'message': 'login successful'})
     else:
@@ -32,10 +34,11 @@ def user_login(request):
 
 # logout route
 def user_logout(request):
+
     # to be deleted when we can log in
-    user1 = authenticate(request, username='billie', password='Hello')
-    if user1 is not None:
-        login(request, user1)
+    # user1 = authenticate(request, username='billie', password='Hello')
+    # if user1 is not None:
+    #     login(request, user1)
     #########
     logout(request)
     return JsonResponse({'message': 'User logged out'})
@@ -59,7 +62,7 @@ def create_prefs(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-    if request.user.is_authenticated:
+    if request.session['logged_in'].user.is_authenticated:
         # get data from FE
         information = json.loads(request.body)
         # get user information
@@ -109,7 +112,7 @@ def update_pref(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-    if request.user.is_authenticated:
+    if request.session['logged_in'].user.is_authenticated:
         # get user information
         user = request.user
 
@@ -159,7 +162,7 @@ def meal_history(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-    if request.user.is_authenticated:
+    if request.session['logged_in'].user.is_authenticated:
         # get information from FE
         if request.method == 'POST':
             meal_info = json.loads(request.body)
@@ -187,7 +190,7 @@ def send_email(request):
     # user1 = authenticate(request, username='billie', password='Hello')
     # if user1 is not None:
     #     login(request, user1)
-    if request.user.is_authenticated:
+    if request.session['logged_in'].user.is_authenticated:
         user = request.user
         email_info = json.loads(request.body)
         send_mail(
