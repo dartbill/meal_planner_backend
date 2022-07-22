@@ -205,7 +205,6 @@ def delete_meal(request):
         if request.method == "DELETE":
             user = request.user
             qs = MealHistory.objects.filter(
-                user_id=user).first()
-            qs.delete()
+                user_id=user).first().delete()
     else:
         return JsonResponse({'error': 'User not authenticated'})
