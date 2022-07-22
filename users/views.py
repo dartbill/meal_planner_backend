@@ -157,17 +157,17 @@ def meal_history(request):
     # check if user is logged in
     if request.user.is_authenticated:
         # get information from FE
+        user = request.user
         if request.method == 'POST':
             meal_info = json.loads(request.body)
-            user = request.user
             # create meal history object
             MealHistory.objects.create(
                 user_id=user, today_date=meal_info['today_date'], recipes=meal_info['recipes']
             )
             return JsonResponse({'message': 'Meal history successfully added'})
         elif request.method == 'GET':
-            user = request.user
-            print(user)
+            # user = request.user
+            # print(user)
             qs = MealHistory.objects.filter(
                 user_id=user).values('recipes', 'today_date')
             result_list = list(qs)
@@ -193,3 +193,18 @@ def send_email(request):
             html_message=email_info['html']
         )
         return JsonResponse({'message': 'email sent successfully'})
+
+
+def delete_meal(request):
+    user1 = authenticate(request, username='billie', password='Hello')
+    if user1 is not None:
+        login(request, user1)
+    #########
+    # check if user is logged in
+    if request.user.is_authenticated:
+        user = request.user
+        qs = MealHistory.objects.filter(
+            user_id=user).first()
+        qs.delete()
+    else:
+        return JsonResponse({'error': 'User not authenticated'})
