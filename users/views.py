@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
-from django.core import serializers
 from itertools import chain
 from .models import Preferences, Diet, Meals, MealHistory
 import json
@@ -141,9 +140,9 @@ def update_pref(request):
                 'calories_limit', 'intolorences', 'budget')
             qs2 = Meals.objects.filter(user_id=user).values(
                 'breakfast', 'lunch', 'dinner', 'dessert', 'snack')
-            # result_list = list(chain(qs, qs2))
+            result_list = list(chain(qs, qs2))
             # print(result_list)
-            return JsonResponse(qs, safe=False)
+            return JsonResponse(result_list, safe=False)
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
@@ -171,10 +170,8 @@ def meal_history(request):
             # print(user)
             qs = MealHistory.objects.filter(
                 user_id=user).values('recipes', 'today_date')
-            # result_list = list(qs)
-            # return JsonResponse(result_list, safe=False)
-            qs_json = serializers.serialize('json', qs)
-            return HttpResponse(qs_json, content_type='application/json')
+            result_list = list(qs)
+            return JsonResponse(result_list, safe=False)
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
