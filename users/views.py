@@ -171,7 +171,7 @@ def meal_history(request):
             user = request.user
             qs = MealHistory.objects.filter(
                 user_id=user).values('recipes', 'today_date')
-            print(qs)
+            # print(qs)
             result_list = list(qs)
             return JsonResponse(result_list, safe=False)
     else:
