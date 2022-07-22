@@ -37,7 +37,7 @@ def user_login(request):
 def user_logout(request):
 
     # to be deleted when we can log in
-    user1 = authenticate(request, username='billie', password='Hello')
+    user1 = authenticate(request, username='Layla', password='Something12')
     if user1 is not None:
         login(request, user1)
     #########
@@ -73,7 +73,7 @@ def create_prefs(request):
     # user1 = authenticate(request, username=username, password=password)
     # if user1 is not None:
     #     login(request, user1)
-    user1 = authenticate(request, username='billie', password='Hello')
+    user1 = authenticate(request, username='Layla', password='Something12')
     if user1 is not None:
         login(request, user1)
     #########
@@ -129,7 +129,7 @@ def update_pref(request):
     # user1 = authenticate(request, username=username, password=password)
     # if user1 is not None:
     #     login(request, user1)
-    user1 = authenticate(request, username='billie', password='Hello')
+    user1 = authenticate(request, username='Layla', password='Something12')
     if user1 is not None:
         login(request, user1)
     #########
@@ -183,7 +183,7 @@ def meal_history(request):
     #     login(request, user1)
     #########
     # check if user is logged in
-    user1 = authenticate(request, username='billie', password='Hello')
+    user1 = authenticate(request, username='Layla', password='Something12')
     if user1 is not None:
         login(request, user1)
     if request.user.is_authenticated:
@@ -217,7 +217,7 @@ def send_email(request):
     # if user1 is not None:
     #     login(request, user1)
     #########
-    user1 = authenticate(request, username='billie', password='Hello')
+    user1 = authenticate(request, username='Layla', password='Something12')
     if user1 is not None:
         login(request, user1)
     # check if user is logged ins
