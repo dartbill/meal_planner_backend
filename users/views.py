@@ -155,27 +155,27 @@ def meal_history(request):
         login(request, user1)
     #########
     # check if user is logged in
-    if request.user.is_authenticated:
+    # if request.user.is_authenticated:
         # get information from FE
-        if request.method == 'POST':
-            meal_info = json.loads(request.body)
-            # print(meal_info['date'])
-            # get user information
-            user = request.user
-            # create meal history object
-            MealHistory.objects.create(
-                user_id=user, today_date=meal_info['today_date'], recipes=meal_info['recipes']
-            )
-            return JsonResponse({'message': 'Meal history successfully added'})
-        elif request.method == 'GET':
-            user = request.user
-            qs = MealHistory.objects.filter(
-                user_id=user).values('recipes', 'today_date')
-            # print(qs)
-            result_list = list(qs)
-            return JsonResponse(result_list, safe=False)
-    else:
-        return JsonResponse({'error': 'User not authenticated'})
+    if request.method == 'POST':
+        meal_info = json.loads(request.body)
+        # print(meal_info['date'])
+        # get user information
+        user = request.user
+        # create meal history object
+        MealHistory.objects.create(
+            user_id=user, today_date=meal_info['today_date'], recipes=meal_info['recipes']
+        )
+        return JsonResponse({'message': 'Meal history successfully added'})
+    elif request.method == 'GET':
+        user = request.user
+        qs = MealHistory.objects.filter(
+            user_id=user).values('recipes', 'today_date')
+        # print(qs)
+        result_list = list(qs)
+        return JsonResponse(result_list, safe=False)
+    # else:
+    #     return JsonResponse({'error': 'User not authenticated'})
 
 
 # send email to user
