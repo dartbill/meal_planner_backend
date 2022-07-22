@@ -170,10 +170,10 @@ def meal_history(request):
         elif request.method == 'GET':
             user = request.user
             qs = MealHistory.objects.filter(
-                user_id=user).values('today_date', 'recipes')
+                user_id=user).values('recipes', 'today_date')
             # print(qs)
-            # result_list = list(qs)
-            return JsonResponse(qs, safe=False)
+            result_list = list(qs)
+            return JsonResponse(result_list, safe=False)
     else:
         return JsonResponse({'error': 'User not authenticated'})
 
