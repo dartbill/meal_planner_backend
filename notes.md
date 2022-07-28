@@ -112,3 +112,5 @@
 "html": "<h1>test html</h1>"}`
         - returns: `{'message': 'email sent successfully'}`
 
+
+`python3 manage.py migrate --run-syncdb`
