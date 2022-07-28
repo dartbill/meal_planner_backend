@@ -1,6 +1,6 @@
 # Sooki
 
-A random weekly meal planner which allows for user input on dietry requirements and generates a 
+A random weekly meal planner which allows for user input on dietry requirements and generates a list of recipes complete with ingredients and instructions.
 
 ## Deployment
 - [Server](https://mealplannerserver.herokuapp.com/)
